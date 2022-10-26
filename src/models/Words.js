@@ -1,34 +1,34 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const wordsSchema = new mongoose.Schema({
-    nonKanji: {
+    word: {
         type: String,
-        required: true
+        required: true,
     },
-    romaji: {
+    furigana: {
         type: String,
-        required: true
+        required: true,
     },
     kanji: {
         type: String,
-        required: true
+        required: true,
     },
     translation: {
         type: String,
-        required: true
+        required: true,
     },
     examples: {
         type: String,
-        requred: true
+        requred: true,
     },
     level: {
         type: String,
-        required: true
+        required: true,
     },
     learned: {
         type: Boolean,
-        default: false
-    }
-})
+        default: false,
+    },
+});
 
-export default mongoose.model('Words', wordsSchema);
+export default mongoose.model('Word', wordsSchema);
