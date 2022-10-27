@@ -5,6 +5,7 @@ import router from './src/router.js';
 import cookieParser from 'cookie-parser';
 import corsOptions from './src/utils/corsOptions.js';
 import cors from 'cors';
+import {login, createNewUser } from './src/controllers/user.js'
 
 import connectDb from './config/dbConnect.js';
 import { checkBearerToken } from './src/utils/auth.js';
@@ -16,12 +17,16 @@ const port = process.env.PORT;
 
 connectDb();
 
-app.use('/api', checkBearerToken, router);
 
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(cookieParser());
+
+app.post('/login', login)
+app.post('/register', createNewUser)
+
+app.use('/api', checkBearerToken, router);
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
